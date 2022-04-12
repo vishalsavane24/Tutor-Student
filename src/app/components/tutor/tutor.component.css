@@ -1,0 +1,38 @@
+.sNames{
+    font-size:medium;
+}
+
+.modal-content{
+  
+    width: 55vw;
+    padding: auto;
+    text-align: left;
+    float: left ;
+
+ 
+    
+}
+
+.modal-dialog{
+    width: auto;
+}
+
+.modal-header{
+    width:auto;
+}
+select{
+    display: inline-block ;
+    
+}
+.multiselect{
+    padding: auto;
+    text-align: left;
+    display: inline-block;
+    margin-left: 50px;
+}
+.answer{
+    padding: auto;
+    text-align: left;
+    display: inline-block;
+    margin-left: 50px;
+}

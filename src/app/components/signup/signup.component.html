@@ -1,0 +1,201 @@
+<div class="conatainer">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>Signup</h1>
+          <h5 style="color: white">Register</h5>
+        </div>
+        <form>
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                name="name"
+                (keypress)="alphaBitOnly($event)"
+                (blur)="validate('firstName')"
+                [(ngModel)]="firstName"
+              />
+              <span style="color: red" *ngIf="!val.vfirstName"
+                >*Required First Name</span
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastname"
+                name="lastname"
+                (keypress)="alphaBitOnly($event)"
+                (blur)="validate('lastName')"
+                [(ngModel)]="lastName"
+              />
+              <span style="color: red" *ngIf="!val.vlastName"
+                >*Required Last Name</span
+              >
+            </div>
+
+            <br />
+            <div>
+              <label for="gender" class="form-label">Select Your Gender</label
+              >&nbsp;
+              <input
+                style="color: white"
+                type="radio"
+                name="gender"
+                class="custom-radio-button"
+                value="Male"
+                (blur)="validate('gender')"
+                [(ngModel)]="gender"
+              /><span style="color: white">Male</span>&nbsp;
+              <input
+                style="color: white"
+                type="radio"
+                name="gender"
+                class="custom-radio-button"
+                value="Female"
+                (blur)="validate('gender')"
+                [(ngModel)]="gender"
+              /><span style="color: white">Female</span><br />
+              <span style="color: red" *ngIf="!val.vgender"
+                >Gender is Required</span
+              >
+            </div>
+            <br />
+            <div>
+              <label for="type" class="form-label"
+                >You are Tutor / Student</label
+              >&nbsp;
+              <input
+                style="color: white"
+                type="radio"
+                name="type"
+                class="custom-radio-button"
+                value="Tutor"
+                (blur)="validate('type')"
+                [(ngModel)]="type"
+              /><span style="color: white">Tutor</span>&nbsp;
+              <input
+                style="color: white"
+                type="radio"
+                name="type"
+                class="custom-radio-button"
+                value="Student"
+                (click)="switch()"
+                (blur)="validate('type')"
+                [(ngModel)]="type"
+              /><span style="color: white">Student</span><br />
+              <span style="color: red" *ngIf="!val.vtype"
+                >Type is Required</span
+              >
+            </div>
+            <br />
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Email address</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                (click)="validate('email')"
+                [(ngModel)]="mailId"
+              />
+              <span style="color: red" *ngIf="!val.vmailId"
+                >*Required Valid Email</span
+              >
+              <!-- <div id="emailHelp" class="form-text"></div> -->
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Mobile No.</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                name="phoneNumber"
+                (click)="validate('phoneNumber')"
+                (keypress)="numberOnly($event)"
+                maxlength="10"
+                [(ngModel)]="phoneNumber"
+              />
+              <span style="color: red" *ngIf="!val.vphoneNumber"
+                >*Required Phone Number</span
+              >
+              <!-- <span style="color: red;" *ngIf="vphonenumber">*</span> -->
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword" class="form-label"
+                >Password</label
+              >
+              <input
+                type="password"
+                [(ngModel)]="password"
+                (click)="validate('password')"
+                name="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                aria-describedby="emailHelp"
+                required
+                minlength="6"
+                maxlength="9"
+              />
+              <span style="color: red" *ngIf="!val.vpassword"
+                >*Required Password</span
+              >
+              <div id="exampleInputPassword1" class="form-text"></div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                name="confirmpassword"
+                id="exampleInputPassword2"
+                minlength="6"
+                maxlength="9"
+                (change)="validate('confirmPassword')"
+                [(ngModel)]="confirmPassword"
+              />
+              <span style="color: red" *ngIf="!val.vconfirmPassword"
+                >*Required Confirm Password </span
+              ><br />
+              <span style="color: red" *ngIf="password !== confirmPassword"
+                >*Password does not match</span
+              >
+
+              <!-- <span style="color: red" *ngIf="!val.vconfirmPassword"> 
+                *Password does not match</span 
+               >  -->
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary mb-2"
+              (click)="storeUserInfo()"
+              [disabled]="disabled"
+              routerLink="/login"
+            >
+              Signup
+            </button>
+          </form>
+          <a style="color: white; margin-top: 10px" routerLink="/login"
+            >Already registered? click to Login</a
+          >
+        </form>
+        <div>
+          <!-- <p *ngFor="let user of info"></p> -->
+        </div>
+        <p>{{ user }}</p>
+      </div>
+    </div>
+  </div>
+</div>

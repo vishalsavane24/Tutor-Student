@@ -1,0 +1,48 @@
+<nav class="navbar navbar-light bg-primary mt-3">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">STUDENT-ASSIGNMENT INFO</h1>
+    <div class="d-flex">
+      <button type="button" class="btn btn-success mx-3" routerLink="/login">
+        Tutor Dashboard
+      </button>
+    </div>
+  </div>
+</nav>
+<br />
+
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><h2>Student Name</h2></th>
+      <th scope="col"><h2>Assignment Name</h2></th>
+      <th scope="col"><h2>Status</h2></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <div *ngFor="let asName of mappingData">
+      <td>{{ asName.studName }}</td>
+      <td>{{ asName.assName }}</td>
+      <td>{{ asName.status ? "Completed" : "Not Completed" }}</td>
+    </div>
+  </tbody>
+</table> -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <!-- <th scope="col">ID</th> -->
+      <th scope="col">Student Name</th>
+      <th scope="col">Assingment Name</th>
+      <th scope="col">Status</th>
+</tr>
+  </thead>
+<tbody>
+    <tr *ngFor="let asName of mappingData;">
+      <!-- <td>{{ i + 1 }}</td> -->
+      <td>{{ asName.sName }}</td>
+      <td>{{ asName.aName }}</td>
+      <td>{{ asName.status }}</td>
+    </tr>
+  </tbody>
+</table>

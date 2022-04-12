@@ -1,0 +1,33 @@
+<div class="conatainer">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+            <div class="text-center">
+                <h1>Student-Login</h1>
+                <!-- <h5 style="color: white;" >Enter your email & password</h5> -->
+            </div>
+            <form>
+                <form>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input name="email" type="email" class="form-control" (blur)="validate('email')" [(ngModel)]="email">
+                      <span style="color: red;" *ngIf="vemail">*Required Email</span>
+                      <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input name="password" type="password" minlength="6" maxlength="9" class="form-control" id="exampleInputPassword1" (blur)="validate('vpassword')" [(ngModel)]="password">
+                      <span style="color: red;" *ngIf="vpassword">*Required Password</span>
+                    </div>
+                    <button type="submit" class="btn btn-success mb-2" (click)="StudentSignIn()">Login</button><br>
+                    <a style="color: white;" routerLink="/signup">Click to Signup</a>
+                  </form>
+                  <!-- <a style="color: white;" routerLink="/signup">  click to signup</a> -->
+            </form>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+

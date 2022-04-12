@@ -1,0 +1,268 @@
+<nav class="navbar navbar-light bg-primary mt-3">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">TUTOR DASHBOARD</h1>
+    <div class="d-flex">
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-success"
+      >
+        Create Assingment
+      </button>
+
+      <button
+        type="button"
+        (click)="removeUser()"
+        class="btn btn-success mx-3"
+        routerLink="/login"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</nav>
+<br />
+<section style="margin-top: 20px; margin-bottom: 20px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Welcome {{ username }}</h1>
+        <br />
+        <h1 style="color: rgb(38, 77, 151)" class="heading text-center">
+          Student List
+        </h1>
+        <!-- // student assigment data -->
+        <!-- <div *ngIf="studData">
+          <div *ngFor="let data of studData">
+            <p>{{ data.studentId }}</p> -->
+        <div>
+          <!-- <table>
+          <thead>
+            <tr>
+              <th scope="col">Student Id</th>
+              <th scope="col">Assignment Id</th>
+            </tr>
+          </thead>
+        </table> -->
+
+          <div>
+            <button
+              class="btn btn-primary"
+              routerLink="/student-assignment-info"
+              (click)="getInfo()"
+            >
+              Student Assignments
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // student assigment data -->
+    <hr />
+  </div>
+  <!-- </div> -->
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Select</th>
+        <th scope="col">UserId</th>
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">MailID</th>
+        <th scope="col">Type</th>
+        <th scope="col">Gender</th>
+
+        <!-- <button class="btn btn-primary">Assign</button> -->
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let student of studentInfo; let i = index">
+        <td><input type="checkbox" [(ngModel)]="student.isSelected" /></td>
+
+        <td>{{ student.userId }}</td>
+        <td>{{ i + 1 }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.Number }}</td>
+        <td>{{ student.mailId }}</td>
+        <td>{{ student.type }}</td>
+        <td>{{ student.gender }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-12">
+      <br />
+      <h1 style="color: rgb(38, 77, 151)" class="heading text-center">
+        Assingments List
+      </h1>
+      <hr />
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Assingment Name</th>
+            <th scope="col">Subject</th>
+
+            <!-- <button class="btn btn-primary">Assign</button> -->
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let assingment of assignments; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ assingment.assingmentName }}</td>
+            <td>{{ assingment.subjectName }}</td>
+            <!-- <td>{{ assingment.answer}}</td> -->
+          </tr>
+        </tbody>
+      </table>
+      <!-- <div class="multiselect">
+          <ng-select
+            [multiple]="true"
+            [items]="assingmentId"
+            bindLabel="assingment_Id"
+            [(ngModel)]="studQue"
+          >
+          </ng-select>
+        </div> -->
+
+      <label>Assingments</label>
+      <div class="multiselect">
+        <ng-select
+          [items]="assignments"
+          bindLabel="assingmentName"
+          [multiple]="true"
+          [(ngModel)]="studentAssignments"
+          
+        >
+        </ng-select>
+      </div>
+      <div>
+        <label>Due Date</label
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field>
+          <input
+            [matDatepicker]="datepicker"
+            matInput
+            placeholder="Select Date"
+            [(ngModel)]="dueDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="datepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <br />
+      <button class="btn btn-primary" (click)="getStudAssingID()">
+        Assign
+      </button>
+
+      <hr />
+    </div>
+  </div>
+
+  <div
+    class="modal fade form-select form-select-lg mb-3"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Assingment</h5>
+          <br />
+        </div>
+        <label>Assingment Name</label>
+        <input [(ngModel)]="assingmentName" class="text" />
+        <br />
+        <div></div>
+        <label>Subject Name</label>
+        <input [(ngModel)]="subjectName" class="text" />
+        <br />
+        <div>
+          <select (change)="setQuestion($event?.target)">
+            <option
+              *ngFor="let q of questionConfig.questionList"
+              value="{{ q.name }}"
+            >
+              {{ q.name }}
+            </option></select
+          ><br />
+
+          <div class="multiselect">
+            <ng-select
+              [multiple]="true"
+              placeholder="Options"
+              [items]="questionConfig.optionsList"
+              bindLabel="name"
+              [(ngModel)]="options"
+            >
+            </ng-select>
+          </div>
+          <br />
+
+          <select class="mx-5" (change)="setAnswer($event?.target)">
+            <option
+              *ngFor="let ans of questionConfig.answerList"
+              value="{{ ans.answer }}"
+            >
+              {{ ans.answer }}
+            </option>
+          </select>
+
+          <br /><br />
+          <!-- <button type="button" class="btn btn-primary">Add</button> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="createAssingment()"
+          >
+            Create
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="createAssingment()"
+          >
+            Assign
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</section>
+
+<!-- new code -->
+
+<!-- <div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Student Assignments</button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+      
+      </div>
+    </div>
+  </div>
+</div> -->

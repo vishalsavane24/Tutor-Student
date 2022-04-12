@@ -1,0 +1,48 @@
+<section style="margin-top: 20px; margin-bottom: 20px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-light bg-primary mt-3">
+          <div class="container-fluid">
+            <h1 style="color: aliceblue">STUDENTS ASSIGNMENT</h1>
+            <div class="d-flex">
+              <button
+                class="btn btn-danger"
+                routerLink="/login"
+                (click)="removeUser()"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </nav>
+        <br />
+        <h1>Welcome {{ username }}</h1>
+        <br />
+        <h1 class="text-center text-denger">Assingments</h1>
+
+        <hr />
+
+        <div *ngIf="assignAssignment">
+          <div *ngFor="let x of assignmentName" >
+            <h2>Assigmnent Name: {{ x.assingmentName }}</h2>
+            <h2>subject name: {{ x.subjectName }}</h2>
+            <h2>Due Date: {{ x.dueDate | date: "fullDate" }}</h2>
+
+            <br />
+            
+            <button class="btn btn-primary" routerLink="/quiz">
+              Start Test
+            </button>
+            <hr />
+          </div>
+        </div>
+        <br />
+        
+
+        <br />
+      </div>
+    </div>
+    <br />
+  </div>
+</section>

@@ -1,0 +1,11 @@
+[
+    {
+        "fname":"firstName",
+        "lname":"lastName",
+        "gen":"gender",
+        "type":"type",
+        "mail":"email",
+        "no":"number"
+
+    }
+]
